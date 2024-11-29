@@ -1,0 +1,47 @@
+services:
+  postgres_database:
+    image: postgres:14.5
+    container_name: postgres_database
+    environment:
+      POSTGRES_DB: tesis2
+      POSTGRES_USER: miliprueba
+      POSTGRES_PASSWORD: "1234"
+    ports: 
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+  web:
+    build: .
+    container_name: django_app
+    restart: always
+    working_dir: /tesisEstacionamiento/
+    command: >
+        bash -c "python3 manage.py makemigrations &&
+                 python3 manage.py migrate && 
+                 gunicorn tesisTomba.wsgi:application --bind 0.0.0.0:8000 \
+                 --certfile=cert.pem --keyfile=key.pem"
+    # volumes:
+    #   - .:/home/mili/Documentos/facultad/tesis/pruebaTesis
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres_database
+    networks:
+      - app_network
+    environment:
+      DATABASE_NAME: tesis2
+      DATABASE_USER: miliprueba
+      DATABASE_PASSWORD: "1234"
+      DATABASE_HOST: postgres_database
+      DATABASE_PORT: 5432
+      SERVER_URL: 192.168.54.176:8000
+
+volumes:
+  postgres_data:
+
+networks:
+  app_network:
+    driver: bridge

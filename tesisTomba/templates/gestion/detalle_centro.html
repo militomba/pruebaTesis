@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle del Centro Comercial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .center img {
+            max-width: 200px;
+        }
+
+        .details-container {
+            background-color: #fff;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .details-container h2 {
+            color: #333;
+        }
+
+        .details-container p {
+            margin-bottom: 10px;
+        }
+
+        .btn-details {
+            position: absolute;
+            top: 7%;
+            right: 20px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-details:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
+        .btn-details-eliminar {
+            position: absolute;
+            top: 60%;
+            right: 35px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #fff;
+            background-color: #ff0000;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .btn-details-eliminar:hover {
+            background-color: #cc0000;
+        }
+        .btn-details-editar {
+            position: absolute;
+            top: 60%;
+            right: 150px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #fff;
+            background-color: #00aaff; /* Color azul claro */
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .btn-details-editar:hover {
+            background-color: #0088cc; /* Color azul claro más oscuro en hover */
+        }
+        .btn-details-lugar {
+            position: absolute;
+            top: 60%;
+            right: 245px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #fff;
+            background-color: #00aaff; /* Color azul claro */
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .btn-details-lugar:hover {
+            background-color: #0088cc; /* Color azul claro más oscuro en hover */
+        }
+        .qr-image {
+            max-width: 300px;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>{{ nombre}}</h1>
+    <div class="center">
+    </div>
+    <div class="details-container">
+        <p><strong>Cantidad de Lugares:</strong> {{ cantLugares }}</p>
+        <p><strong>Niveles:</strong> {{ niveles }}</p>
+        <img class = qr-image src="{{ imagen }}" alt="Código QR de {{ nombre }}">
+        <a href="{% url 'estacionamiento:eliminarCentro' nombre %}" class="btn-details-eliminar">ELIMINAR</a>
+        <a href="{% url 'estacionamiento:edicionCentro' nombre %}" class="btn-details-editar">EDITAR</a>
+        {% if tipoUsuario == 'Centro Comercial' %}
+        <a href="{% url 'estacionamiento:listLugares' nombre  %}" class="btn-details-lugar">LUGARES</a>
+        {% endif %}
+    </div>
+    <a href="{% url 'estacionamiento:centroComercial' %}" class="btn-details">VOLVER A LA PAGINA PRINCIPAL</a>
+    
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listado de Lugares</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+        .container {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        /* Estilos adicionales */
+        /* ... */
+        .btn-details-volver {
+            position: absolute;
+            top: 3%;
+            left: 20px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-details-volver:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+        <!-- Contenido del navbar -->
+    </div>
+
+    <div class="container">
+        <h1>CENTRO COMERCIAL {{ nombre }}</h1>
+
+        <img src="{{ imagen }}" alt="Código QR de {{ nombre }}">
+    </div>
+    <a href="{% url 'estacionamiento:listLugares' nombre%}" class="btn-details-volver">VOLVER</a>
+
+
+</body>
+</html>

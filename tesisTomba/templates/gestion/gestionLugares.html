@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listado de Lugares</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        li:hover {
+            background-color: #f9f9f9;
+        }
+
+        .btn-details {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-details:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
+        .btn-add {
+            text-decoration: none;
+            top: 7%;
+            right: 20px;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            float: right;
+            margin-top: -50px;
+        }
+
+        .btn-add:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+        .btn-qr {
+            text-decoration: none;
+            top: 7%;
+            right: 20px;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            float: right;
+            margin-top: -50px;;
+        }
+
+        .btn-qr:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+        .btn-details-volver {
+            position: absolute;
+            top: 3%;
+            left: 20px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 6px 12px;
+            border-radius: px;
+            font-weight: bold;
+        }
+
+        .btn-details-volver:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+        .boton-final {
+            margin-top: 20px;
+            text-align: right;
+          }
+
+        .btn-details-logout {
+            position: absolute;
+            top: 3%;
+            right: 20px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-details-logout:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>
+       CENTRO COMERCIAL {{centroComecial.nombre}}
+    </h1>
+    <a href="{% url 'estacionamiento:cc' centroComecial.nombre%}" class="btn-qr">CODIGO QR</a>
+    <h2>
+        LISTADO DE LUGARES:
+     </h2>
+    {% comment %} <a href="{% url 'estacionamiento:detalle_centro' centroComecial.nombre %}" class="btn-details-volver">VOLVER </a> {% endcomment %}
+     
+   
+    <a href="{% url 'estacionamiento:crearLugar' centroComecial.id%}" class="btn-add">+</a>    
+
+    <ul>
+        {% for lugar in lugar %}
+            <li>
+                <h2>LUGAR: {{ lugar.lugar }}</h2>
+                {% if lugar.status == True %}
+                <h2>Disponible</h2>
+                {% else %}
+                <h2>No disponible</h2>
+                {% endif %}
+                
+                <a href="{% url 'estacionamiento:detalleLugar' lugar.lugar  centroComecial.id%}" class="btn-details">Ver detalles</a>
+                
+            </li>
+        {% endfor %}
+    </ul>
+        {% comment %} <a href="{% url 'usuarios:logout' %}" class="btn-details-logout">Cerrar Sesión</a> {% endcomment %}
+
+</body>
+</html>

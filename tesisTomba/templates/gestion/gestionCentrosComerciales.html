@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listado de Centros Comerciales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        li:hover {
+            background-color: #f9f9f9;
+        }
+
+        .btn-details {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-details:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+        .btn-details-volver {
+            position: absolute;
+            top: 3%;
+            left: 20px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-details-volver:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
+        .btn-add {
+            text-decoration: none;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            float: right;
+            margin-top: -50px;
+        }
+
+        .btn-add:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+        .btn-details-logout {
+            position: absolute;
+            top: 3%;
+            right: 20px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-details-logout:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>
+        Listado de Centros Comerciales
+    </h1>
+    <a href="{% url 'estacionamiento:crearCentroComercial' %}" class="btn-add">+</a>
+    <ul>
+        {% for centro in cc %}
+            <li>
+                <h2>{{ centro.nombre }}</h2>
+                <a href="{% url 'estacionamiento:detalle_centro' centro.nombre %}" class="btn-details">Ver detalles</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% comment %} <a href="{% url 'usuarios:logout' %}" class="btn-details-logout">Cerrar Sesión</a> {% endcomment %}
+
+    <a href="{% url 'usuarios:administrador'%}" class="btn-details-volver">VOLVER</a>
+</body>
+</html>
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CENTRO COMERCIAL</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #154360;
+            }
+            .header {
+                width: 100%;
+                background-color: #154360;
+                color: white;
+                padding: 5px;
+                box-sizing: border-box;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            .qr-image {
+                max-width: 300px;
+                height: auto;
+            }
+            .info-container {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+              }
+              
+              .info-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              }
+              .info-wrapper h2,
+            .info-wrapper button {
+            color: #276e90;
+            }
+            .button {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #276e90;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+              }
+        </style>
+       
+    </head>
+    <body>
+        <div class="header">
+            <h1> SHOPPING {{centroComercial}}</h1>
+        </div>
+        <div class="info-container">
+        <div class="info-wrapper">
+        <h2>LUGAR: {{ lugar.lugar }}</h2>
+        <h2>NIVEL: {{ lugar.nivel }}</h2>
+       
+        <img class="qr-image" src="{{ imagen }}" alt="Codigo QR">
+        
+        <h2>FECHA : {{fecha}}</h2>
+        <h2>HORARIO {{horario}}</h2>
+        <a href="{{ imagen }}" download="{{ lugar.lugar }}.png" class="button">Descargar QR</a>
+        </div>
+        </div>
+    </body>
+</html>

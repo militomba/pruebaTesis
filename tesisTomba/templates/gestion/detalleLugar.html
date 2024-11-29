@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle del Centro Comercial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .center img {
+            max-width: 200px;
+        }
+
+        .details-container {
+            background-color: #fff;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position:relative;
+        }
+
+        .details-container h2 {
+            color: #333;
+        }
+
+        .details-container p {
+            margin-bottom: 10px;
+        }
+
+        .btn-details {
+            position: absolute;
+            top: 7%;
+            right: 20px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-details:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+        .btn-details-eliminar {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            text-decoration: none;
+            color: #fff;
+            background-color: #276e90;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .btn-details-eliminar:hover {
+            background-color: #0088cc;
+        }
+
+        .btn-details-editar {
+            position: absolute;
+            bottom: 0;
+            right: 7%;
+            text-decoration: none;
+            color: #fff;
+            background-color: #276e90; /* Color azul claro */
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .btn-details-editar:hover {
+            background-color: #0088cc; /* Color azul claro más oscuro en hover */
+        }
+        .btn-details-liberar {
+            position: absolute;
+            bottom: 0;
+            right: 13%;
+            text-decoration: none;
+            color: #fff;
+            background-color: #276e90; /* Color azul claro */
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .btn-details-liberar:hover {
+            background-color: #0088cc; /* Color azul claro más oscuro en hover */
+        }
+        .btn-details-lugar {
+            position: absolute;
+            top: 60%;
+            right: 250px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #fff;
+            background-color: #00aaff; /* Color azul claro */
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .btn-details-lugar:hover {
+            background-color: #0088cc; /* Color azul claro más oscuro en hover */
+        }
+
+        .qr-image {
+            max-width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>LUGAR:{{lugar}}</h1>
+    <div class="center">
+    </div>
+    <div class="details-container">
+        <p><strong>STATUS:</strong> {{ status }}</p>
+        <p><strong>NIVEL:</strong> {{ nivel }}</p>
+        <a href="{% url 'estacionamiento:eliminarLugar' lugar %}" class="btn-details-eliminar">ELIMINAR</a>
+        <a href="{% url 'estacionamiento:editarLugar' centroComercial  lugar %}" class="btn-details-editar">EDITAR</a>
+       {% comment %} <a href="{% url 'estacionamiento:liberarLugar' lugar%}" class="btn-details-liberar">LIBERAR</a> {% endcomment %}
+        <p><strong>CODIGO QR:</p>
+            {% if qr_vacio %}
+            <p>No hay código QR disponible para este lugar.</p>
+        {% else %}
+            <img class="qr-image" src="{{ qr.url }}" alt="Código QR">
+        {% endif %}
+    </div>
+    <a href="{% url 'estacionamiento:listLugares' centroComercial%}" class="btn-details">VOLVER</a>
+</body>
+</html>

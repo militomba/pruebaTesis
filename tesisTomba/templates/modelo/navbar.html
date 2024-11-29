@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .navbar {
+            background-color: #154360;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-title {
+            margin-left: 10px;
+            font-size: 24px; /* Ajusta el tamaño de fuente según tus preferencias */
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .username {
+            margin-right: 40px;
+            font-size: 18px; /* Ajusta el tamaño de fuente según tus preferencias */
+            cursor: pointer;
+        }
+
+        .logout-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 3%;
+            display: none;
+            list-style: none;
+            background-color: #fff;
+            padding: 0;
+            margin: 0;
+            z-index: 1;
+        }
+
+        .logout-dropdown-item {
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .logout-link {
+            color: #011932;
+            text-decoration: none;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #EFEFEF;  /* fallback for old browsers */
+            
+            
+}
+    </style>
+    <script>
+        function toggleLogoutDropdown() {
+            var dropdown = document.getElementById("logout-dropdown");
+            dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <div class="navbar-title">FP</div>
+        </div>
+        <div class="navbar-right">
+            {% if user.is_authenticated %}
+                <span class="username" onclick="toggleLogoutDropdown()">@{{ user}}</span>
+                <ul id="logout-dropdown" class="logout-dropdown">
+                    <li class="logout-dropdown-item">
+                        <a href="{% url 'usuarios:logout' %}" class="logout-link">Cerrar Sesión</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
+
+

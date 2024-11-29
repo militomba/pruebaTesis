@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear Centro Comercial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position:relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: bold; 
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #e7e7e7
+            color: #333;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        .btn-details {
+            position: absolute;
+            top: 92%;
+            right: 20px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #333;
+            background-color: #e7e7e7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-details:hover {
+          background-color: #0056b3;
+          color: #fff;
+        }
+        .btn-details-volver {
+          position: absolute;
+          top: -8%;
+          right: 20px;
+          transform: translateY(-50%);
+          text-decoration: none;
+          color: #333;
+          background-color: #e7e7e7;
+          padding: 8px 16px;
+          border-radius: 4px;
+          font-weight: bold;
+      }
+
+      .btn-details-volver:hover {
+        background-color: #0056b3;
+        color: #fff;
+      }
+        
+        .btn-generate-qr {
+            background-color: #e7e7e7;
+            color: #333;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            
+        }
+
+        .btn-generate-qr:hover {
+          background-color: #0056b3;
+          color: #fff;
+        }
+
+        #qr-container {
+            margin-top: 20px;
+        }
+
+        #qr-code {
+            max-width: 200px;
+        }
+        .qr-image {
+          max-width: 300px;
+          height: auto;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/dist/qrcode.min.js"></script>
+</head>
+<body>
+    <h1>Crear Centro Comercial</h1>
+
+    <form method="post" action="{% url 'estacionamiento:crearCentroComercial' %}">{% csrf_token%}
+        
+  <div class="form-group">
+    <label for="nombre">Nombre del centro comercial:</label>
+    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ request.POST.nombre }}" required>
+    {% if error %}
+    <script>
+      window.onload = function() {
+        alert("{{ error }}");
+        window.location.href = "{% url 'estacionamiento:crearCentroComercial' %}";
+      };
+    </script>
+  {% endif %}
+</div>
+  <div class="form-group">
+    <label for="cantidadLugares">Cantidad de lugares:</label>
+    <input type="number" class="form-control" id="cantidadLugares" name="cantidadLugares" value="{{ request.POST.cantidadLugares }}" required>
+  </div>
+  <div class="form-group">
+    <label for="niveles">Niveles:</label>
+    <input type="number" class="form-control" id="niveles" name="niveles" value="{{ request.POST.niveles }}" required>
+  </div>
+  {% comment %} <div class="form-group">
+    <label for="contenido">Contenido para el codigo QR:</label>
+    <input type="text" class="form-control" id="contenido" name="contenido" value="{{ request.POST.contenido }}" required>
+  </div> {% endcomment %}
+ 
+  <button type="buttom" class="btn-generate-qr">Generar CodigoQR</button>
+  <div id="qr-code">
+    {% if qr_code %}
+      <h2>Código QR:</h2>
+      <img class= qr-image src="{{ qr_code }}" alt="Código QR">
+    {% endif %}
+  </div>
+
+  <button type="buttom" class="btn-details " formaction="{% url 'estacionamiento:centroComercial' %}">Crear Centro Comercial</button>
+
+  <a href="{% url 'estacionamiento:centroComercial' %}" class="btn-details-volver">VOLVER A LA PAGINA PRINCIPAL</a>
+</body>
+</html>
+

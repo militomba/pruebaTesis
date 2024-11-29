@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminar Centro Comercial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .center img {
+            max-width: 200px;
+        }
+
+        .details-container {
+            background-color: #fff;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .details-container h2 {
+            color: #333;
+        }
+
+        .details-container p {
+            margin-bottom: 10px;
+        }
+
+        .btn-details-eliminar {
+            position: absolute;
+            top: 17%;
+            left: 35px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #fff;
+            background-color: #ff0000;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .btn-details-eliminar:hover {
+            background-color: #cc0000;
+        }
+        .btn-details-cancelar {
+            position: absolute;
+            top: 17%;
+            left: 140px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #fff;
+            background-color: #ff0000;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .btn-details-cancelar:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eliminar Lugar</h1>
+    <p>¿Estás seguro de que deseas eliminar el lugar "{{ lugar.lugar }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn-details-eliminar" type="submit" >ELIMINAR</button>
+        
+        <button type="buttom" class= "btn-details-cancelar"formaction="{% url 'estacionamiento:detalleLugar' lugar.lugar lugar.id  %}">CANCELAR</button>
+    </form>
+</body>
+</html>
