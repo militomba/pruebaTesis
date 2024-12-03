@@ -1,0 +1,23 @@
+[
+    {
+        "model": "usuarios.tipousuarios",
+        "pk": 1,
+        "fields": {
+            "tipo_usuario": "Administrador"
+        }
+    },
+    {
+        "model": "usuarios.tipousuarios",
+        "pk": 2,
+        "fields": {
+            "tipo_usuario": "Centro Comercial"
+        }
+    },
+    {
+        "model": "usuarios.tipousuarios",
+        "pk": 3,
+        "fields": {
+            "tipo_usuario": "Scanner QR"
+        }
+    }
+]
