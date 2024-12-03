@@ -57,10 +57,8 @@
 
     function success(result) {
 
-        document.getElementById('result').innerHTML = `
-        <h2>¡Escaneado con exito!</h2>
-        <p><button class="button" onclick="location.href='${result}'">LIBERAR LUGAR</button></p>
-        `;
+
+        window.location.replace(result);
         // Prints result as a link inside result element
 
         scanner.clear();

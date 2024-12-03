@@ -45,6 +45,11 @@
     </div>
     {% comment %} <a href="{% url 'usuarios:scanner' user.id%}" class="btn-details-volver">VOLVER</a> {% endcomment %}
     <a href="javascript:history.back()" class="btn-details-volver">VOLVER</a>
-
-    </body>
+    {% comment %} <script type="text/javascript">
+        // Redirigir automáticamente a la página de scanner después de 5 segundos
+        setTimeout(function() {
+            window.location.href = "{% url 'usuarios:scanner' %}";
+        }, 5000); // 5000ms = 5 segundos
+    </script> 
+    </body> {% endcomment %}
 </html>

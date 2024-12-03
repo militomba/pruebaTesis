@@ -32,7 +32,7 @@ class CentroComercialEspecifico(models.Model):
         }
         token = jwt.encode(archivojwt, '1234', algorithm='HS256')
         qr = qrcode.QRCode(version=1, box_size=10, border=5)
-        qr.add_data(SERVER_URL+'/funcion/detalleLugarAsignado/'+self.nombre+'/?token=' + token)
+        qr.add_data('http://'+SERVER_URL+'/funcion/detalleLugarAsignado/'+self.nombre+'/?token=' + token)
         qr.make(fit=True)
         # Generar la imagen del código QR
         img = qr.make_image(fill='black', back_color='white')

@@ -8,7 +8,7 @@ urlpatterns = [
         path('listadoUsuario/', Usuarios.listUsuario, name='usuario'),
         path('detalleusuario/<int:usuarioID>', Usuarios.detalleUsuario, name='detalleUsuario'),
         path('agregarCentro/<int:usuarioID>', Usuarios.agregarCentroComercial, name='agregarCentro'),
-        path('scanner/<int:usuarioID>', Usuarios.scanner, name='scanner'),
+        path('scanner/', Usuarios.scanner, name='scanner'),
         path('logout/', Usuarios.user_logout, name='logout')
 
     

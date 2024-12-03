@@ -60,7 +60,8 @@ class Usuarios(viewsets.ViewSet):
                 elif tipo_usuario == 'Centro Comercial':
                     return redirect('estacionamiento:listLugares', datos_usuario.centroComercial.nombre)  # Redirigir a la página del centro comercial
                 elif tipo_usuario == 'Scanner QR':
-                    return redirect('usuarios:scanner', datos_usuario.id)  # Redirigir a la página del scanner QR # Redirigir a la página de inicio
+                    return redirect('usuarios:scanner')
+                    # return redirect('usuarios:scanner', datos_usuario.id)  # Redirigir a la página del scanner QR # Redirigir a la página de inicio
             else:
                 return render(request, 'login.html', {'error': 'Usuario o contraseña incorrectos'})
         return render(request, 'login.html')
@@ -137,15 +138,16 @@ class Usuarios(viewsets.ViewSet):
         
         return render(request, 'agregarCentroComercial.html', {'cc': cc, 'usuario': usuario})
     
-    def scanner(request, usuarioID):
-        usuario = DatosUsuarios.objects.get(id=usuarioID)
-        user=usuario.usuario
-        id_user = usuario.id
-        print({user})
-        print({usuario.id})
-        return render(request, 'scanner.html', {'usuario':user})
+    # def scanner(request, usuarioID):
+    #     usuario = DatosUsuarios.objects.get(id=usuarioID)
+    #     user=usuario.usuario
+    #     id_user = usuario.id
+    #     print({user})
+    #     print({usuario.id})
+    #     return render(request, 'scanner.html', {'usuario':user})
 
-
+    def scanner(request):
+        return render(request, 'scanner.html')
 
     #USUARIOS CENTROS COMERCIALES
         

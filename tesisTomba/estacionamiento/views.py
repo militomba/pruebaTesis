@@ -226,7 +226,7 @@ class Funciones(viewsets.ViewSet):
 
         #generar codigo QR
         qr = qrcode.QRCode(version=1, box_size=10, border=5)
-        qr.add_data(SERVER_URL+'/funcion/liberarLugar/'+str(lugarAsignado.lugar)+'/?token=' + token)
+        qr.add_data('http://'+SERVER_URL+'/funcion/liberarLugar/'+str(lugarAsignado.lugar)+'/?token=' + token)
         qr.make(fit=True)
         img = qr.make_image(fill='black', back_color='white')
 
