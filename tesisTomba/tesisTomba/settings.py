@@ -151,7 +151,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -164,7 +163,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # # RUNSERVERPLUS_SERVER_ADDRESS_PORT = '192.168.54.176:8081'
 SECURE_SSL_REDIRECT = False
 # SERVER_URL = os.getenv("SERVER_URL", "127.0.0.1:8000")
-SERVER_URL = os.getenv("SERVER_URL", "200.51.41.152:8000")
+SERVER_URL = os.getenv("SERVER_URL", "127.0.0.1:8000")
 
 #SESIONES
 CSRF_COOKIE_SECURE = False
