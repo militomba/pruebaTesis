@@ -37,7 +37,9 @@ services:
       DATABASE_PASSWORD: "1234"
       DATABASE_HOST: postgres_database
       DATABASE_PORT: 5432
-      SERVER_URL: 200.51.41.152:8000
+      # SERVER_URL: 200.51.41.152:8000
+      SERVER_URL: 192.168.54.176:8000
+
 
 volumes:
   postgres_data:
