@@ -24,15 +24,6 @@ import os
 from tesisTomba.settings import SERVER_URL
 
 
-def home(request):
-        context = {
-            'author': 'Milagros Tomba',
-            'faculty': 'Facultad de Ingeniería',
-            'university': 'Universidad de Mendoza',
-            'project_date': '28 de noviembre de 2024',
-            'description': 'Este es un proyecto de tesis que demuestra la integración y desarrollo de soluciones tecnológicas.',
-        }
-        return render(request, 'home.html', context)
 class CentrosComercialesViews(viewsets.ViewSet):
     def listCentroComercial(request):
         ccListados = CentroComercialEspecifico.objects.all()

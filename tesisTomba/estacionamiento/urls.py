@@ -3,7 +3,6 @@ from .views import *
 
 app_name = 'estacionamiento'
 urlpatterns = [
-    path('', home, name='home'),
     path('funcion/', include([
     #path('asignar_lugar/', asignar_lugar_view, name='asignar_lugar'),
     path('detalleLugarAsignado/<str:cc>/', Funciones.detalleLugar, name='detalleLugar'),

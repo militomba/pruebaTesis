@@ -10,10 +10,16 @@ from django.contrib.auth.models import User
 
 
 
-
-
-
 class Usuarios(viewsets.ViewSet):
+    def home(request):
+        context = {
+            'author': 'Milagros Tomba',
+            'faculty': 'Facultad de Ingeniería',
+            'university': 'Universidad de Mendoza',
+            'project_date': "2024",
+            'description': 'Proyecto de tesis para la automatización de los estacionamientos de los centros comerciales.',
+        }
+        return render(request, 'home.html', context)
     def register(request):
         if request.method == 'POST':
             username = request.POST['usuario']
